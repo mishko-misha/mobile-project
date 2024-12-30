@@ -1,0 +1,23 @@
+import { config as baseConfig } from '../wdio.shared.conf.js';
+
+export const config: WebdriverIO.Config = {
+    ...baseConfig,
+    specs: ["../../tests/specs/**/app*.spec.ts"],
+
+    user: process.env.BROWSERSTACK_USER || 'xxxxxxxxxxx',
+    key: process.env.BROWSERSTACK_ACCESS_KEY || 'xxxxxxxxxxx',
+    services: ['browserstack'],
+    hostname: 'hub.browserstack.com',
+    port: 443,
+    protocol: 'https',
+
+    capabilities: [
+        {
+
+            'platformName': 'IOS',
+            'appium:deviceName': 'iPhone 15',
+            'appium:platformVersion': '17.4',
+            'appium:app': 'link app',
+        },
+    ] as WebdriverIO.Capabilities[]
+};
